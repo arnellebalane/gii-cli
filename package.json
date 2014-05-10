@@ -1,0 +1,25 @@
+{
+  "name": "gii-cli",
+  "description": "command-line version of yii framework's gii tool",
+  "version": "0.1.0",
+  "homepage": "https://github.com/arnellebalane/gii-cli",
+  "author": {
+    "name": "Arnelle Balane",
+    "email": "arnellebalane@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arnellebalane/gii-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arnellebalane/gii-cli/issues"
+  },
+  "engines": {
+    "node": "0.8"
+  },
+  "keywords": ["gii"],
+  "preferGlobal": "true",
+  "bin": {
+    "gii": "lib/gii.js"
+  }
+}
