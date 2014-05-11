@@ -1,4 +1,4 @@
 gii-cli
 =======
 
-command-line version of yii framework's gii tool
+yii framework code generation command-line tool
