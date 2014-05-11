@@ -1,0 +1,9 @@
+<?php
+
+  class {{class-name}}Controller extends {{parent-class}} {
+
+    [actions][/actions]
+
+  }
+
+// end of file {{class-name}}Controller.php

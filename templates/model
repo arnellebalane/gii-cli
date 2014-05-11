@@ -1,0 +1,21 @@
+<?php 
+
+  class {{class-name}} extends {{parent-class}} {
+
+    [attributes][/attributes]
+
+    [model]
+    public static function model($class = __CLASS__) {
+      return parent::model($class);
+    }
+    [/model]
+
+    [table]
+    public function tableName() {
+      return '{{table-name}}';
+    }
+    [/table]
+
+  }
+
+// end of file {{class-name}}.php

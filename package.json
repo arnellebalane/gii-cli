@@ -1,7 +1,8 @@
 {
   "name": "gii-cli",
   "description": "command-line version of yii framework's gii tool",
-  "version": "0.1.0",
+  "version": "1.0.3",
+  "license": "MIT",
   "homepage": "https://github.com/arnellebalane/gii-cli",
   "author": {
     "name": "Arnelle Balane",
@@ -21,5 +22,8 @@
   "preferGlobal": "true",
   "bin": {
     "gii": "lib/gii.js"
+  },
+  "dependencies": {
+    "optimist": "*"
   }
 }
