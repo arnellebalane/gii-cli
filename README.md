@@ -33,7 +33,7 @@ And the generated model will look like:
 
     // end of file User.php
 
-There are also some options which you can set to modify some properties of the generated model:
+There are also some options which you can set to modify some properties of the model to be generated:
 
     --activerecord, -a                create an ActiveRecord model
     --form, -f                        create a FormModel model
@@ -88,7 +88,7 @@ The "Controller" suffix of the class name will be automatically appended. The co
 
     // end of file UsersController.php
 
-There are also some options which you can set to modify some properties of the generated controller:
+There are also some options which you can set to modify some properties of the controller to be generated:
 
     --parent <parent>, -p <parent>    sets the parent class of the mode to <parent>
 
@@ -126,7 +126,73 @@ will generate the following controller:
 
 As you can see, you don't have to include the "action" prefix as it will be automatically added by the generator.
 
+####Generating migrations
+
+Command-line help
+
+    gii migration --help
+
+To generate a migration called `create_user_table` for creating a database table called `user`, simply run:
+
+    gii migration create_user_table
+
+And the generated migration will look like:
+
+    <?php
+
+      class m{migration-timestamp}_create_user_table extends CDbMigration {
+
+        public function up() {
+
+        }
+
+        public function down() {
+
+        }
+
+      }
+
+    // end of migration "create_user_table"
+
+There are also some options which you can set to modify some properties of the migration to be generated:
+
+    --safe, -s                        use the safe migration methods which uses transactions
+    --dbtable <table>, -d <table>     the name of the database table to be created
+    --timestamps, -t                  add timestamps to the migration
+    --parent <parent>, -p <parent>    sets the parent class of the migration to <parent>
+
+If you want to generate a migration which will create a database table, you can pass a space-separated list of table columns after the name of the migration. Each element in the list should be in the form `name:type` where `name` is the name of the column and type is its data type (e.g. pk, string, int, timestamp, etc.).
+
+Example:
+
+    gii migration -std user create_user_table id:pk username:string password:string
+
+will generate the following migration:
+
+    <?php
+
+      class m{migration-timestamp}_create_user_table extends CDbMigration {
+
+        public function safeUp() {
+          $this->createTable('user', array(
+            'id' => 'pk',
+            'username' => 'string',
+            'password' => 'string',
+            'update_time' => 'timestamp',
+            'create_time' => 'timestamp default current timestamp'
+          ));
+        }
+
+        public function safeDown() {
+          $this->dropTable('user');
+        }
+
+      }
+
+    // end of migration "create_user_table"
+
+You may now run `yiic migrate` to apply the migrations, or make modifications to the generated migration before you do that.
+
 ###Coming Up
-- migration generator
 - CRUD generator
 - more flags/options, if possible
