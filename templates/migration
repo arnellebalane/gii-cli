@@ -1,0 +1,47 @@
+<?php
+
+  class m{{migration-timestamp}}_{{migration-name}} extends {{parent-class}} {
+
+    [unsafe]
+    public function up() {
+      [create-table]
+      $this->createTable('{{table-name}}', array(
+        [attributes][/attributes]
+        [timestamps]
+        'update_time' => 'timestamp',
+        'create_time' => 'timestamp default current_timestamp'
+        [/timestamps]
+      ));
+      [/create-table]
+    }
+
+    public function down() {
+      [drop-table]
+      $this->dropTable('{{table-name}}');
+      [/drop-table]
+    }
+    [/unsafe]
+
+    [safe]
+    public function safeUp() {
+      [create-table]
+      $this->createTable('{{table-name}}', array(
+        [attributes][/attributes]
+        [timestamps]
+        'update_time' => 'timestamp',
+        'create_time' => 'timestamp default current_timestamp'
+        [/timestamps]
+      ));
+      [/create-table]
+    }
+
+    public function safeDown() {
+      [drop-table]
+      $this->dropTable('{{table-name}}');
+      [/drop-table]
+    }
+    [/safe]
+
+  }
+
+// end of migration "{{migration-name}}"
