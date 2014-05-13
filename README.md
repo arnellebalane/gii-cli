@@ -35,16 +35,16 @@ And the generated model will look like:
 
 There are also some options which you can set to modify some properties of the model to be generated:
 
-    --activerecord       create an ActiveRecord model
-    --form               create a FormModel model
-    --parent <parent>    sets the parent class of the mode to <parent>
-    --table <table>      sets the ActiveRecord model's corresponding table to <table>
+    -a, --activerecord       create an ActiveRecord model
+    -f, --form               create a FormModel model
+    -p, --parent <parent>    sets the parent class of the mode to <parent>
+    -t, --table <table>      sets the ActiveRecord model's corresponding table to <table>
 
 You can also pass in a list of attributes that you want the model to have. Just add the space-separated list after the name of the model.
 
 Example:
 
-    gii model --activerecord --table users_table User email username password
+    gii model -at users_table User email username password
 
 will generate the following model:
 
@@ -90,13 +90,13 @@ The "Controller" suffix of the class name will be automatically appended. The co
 
 There are also some options which you can set to modify some properties of the controller to be generated:
 
-    --parent <parent>    sets the parent class of the mode to <parent>
+    -p, --parent <parent>    sets the parent class of the mode to <parent>
 
 You can also pass in a list of actions that you want the controller to have. Just add the space-separated list after the name of the controller.
 
 Example:
 
-    gii controller --parent MainController Users index create update delete
+    gii controller -p MainController Users index create update delete
 
 will generate the following controller:
 
@@ -156,16 +156,16 @@ And the generated migration will look like:
 
 There are also some options which you can set to modify some properties of the migration to be generated:
 
-    --safe               use the safe migration methods which uses transactions
-    --dbtable <table>    the name of the database table to be created
-    --timestamps         add timestamps to the migration
-    --parent <parent>    sets the parent class of the migration to <parent>
+    -s, --safe               use the safe migration methods which uses transactions
+    -d, --dbtable <table>    the name of the database table to be created
+    -t, --timestamps         add timestamps to the migration
+    -p, --parent <parent>    sets the parent class of the migration to <parent>
 
 If you want to generate a migration which will create a database table, you can pass a space-separated list of table columns after the name of the migration. Each element in the list should be in the form `name:type` where `name` is the name of the column and type is its data type (e.g. pk, string, int, timestamp, etc.).
 
 Example:
 
-    gii migration --safe --timestamps --dbname user create_user_table id:pk username:string password:string
+    gii migration -std user create_user_table id:pk username:string password:string
 
 will generate the following migration:
 
