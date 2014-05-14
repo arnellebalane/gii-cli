@@ -92,7 +92,7 @@ There are also some options which you can set to modify some properties of the c
 
     -p, --parent <parent>    sets the parent class of the mode to <parent>
 
-You can also pass in a list of actions that you want the controller to have. Just add the space-separated list after the name of the controller.
+You can also pass in a list of actions that you want the controller to have. Just add the space-separated list after the name of the controller. A view file will also be automatically generated for each action, and the render code-snippet will be added inside each action.
 
 Example:
 
@@ -105,26 +105,33 @@ will generate the following controller:
       class UsersController extends MainController {
 
         public function actionIndex() {
-
+          $this->render('index');
         }
 
         public function actionCreate() {
-
+          $this->render('create');
         }
 
         public function actionUpdate() {
-
+          $this->render('update');
         }
 
         public function actionDelete() {
-
+          $this->render('delete');
         }
 
       }
 
     // end of file UsersController.php
 
-As you can see, you don't have to include the "action" prefix as it will be automatically added by the generator.
+and the following view files:
+
+    views/users/index.php
+    views/users/create.php
+    views/users/update.php
+    views/users/delete.php
+
+As you can see, you don't have to include the "action" prefix to the action names as it will be automatically added by the generator.
 
 ####Generating migrations
 
@@ -193,7 +200,30 @@ will generate the following migration:
 
 You may now run `yiic migrate` to apply the migrations, or make modifications to the generated migration before you do that.
 
-###Coming Up
-- short flags
-- CRUD generator
-- more flags/options, if possible
+####Generating CRUD (scaffolding)
+
+Command-line help:
+
+    gii crud --help
+
+To generate a CRUD for a `User` resource, simply run the following:
+
+    gii crud User
+
+and it will generate the basic files (controller, model, migration) needed to manage the `User` resource. The command above is similar to running the following three commands separately:
+
+    gii controller Users index show create update delete
+    gii model -a user User
+    gii migration -std user create_user_table
+
+You can also pass a list of attributes for the resource. These will be used in the migration for creating the database table. To do this, just append the space-separated list of attributes to the end of the command. Each attribute must be of the form `name:type` where `name` is the name of the attribute (table column) and `type` is its data type (e.g. pk, int, string, timestamp, etc.).
+
+Example:
+
+  gii crud User id:pk username:string password:string
+
+is just the same as running the following commands separately:
+  
+  gii controller Users index show create update delete
+  gii model -a user User
+  gii migration -std user create_user_table id:pk username:string password:string
