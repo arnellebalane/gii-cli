@@ -220,10 +220,10 @@ You can also pass a list of attributes for the resource. These will be used in t
 
 Example:
 
-  gii crud User id:pk username:string password:string
+    gii crud User id:pk username:string password:string
 
 is just the same as running the following commands separately:
   
-  gii controller Users index show create update delete
-  gii model -a user User
-  gii migration -std user create_user_table id:pk username:string password:string
+    gii controller Users index show create update delete
+    gii model -a user User
+    gii migration -std user create_user_table id:pk username:string password:string
